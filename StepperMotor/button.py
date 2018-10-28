@@ -72,7 +72,7 @@ def Step6():
  sleep (time)
  GPIO.output(D, False)
  GPIO.output(A, False)
- 
+""" 
  # start one complete turn
 cap = cv2.VideoCapture(0)
 
@@ -92,9 +92,10 @@ cv2.destroyAllWindows()
 
 
 cap = cv2.VideoCapture(0)
+"""
 while True:
-    Button_State = GPIO.input(E)
-    if Button_State == True:
+  Button_State = GPIO.input(E)
+  if Button_State == True:
      '''
         while(True):
         # Capture frame-by-frame
@@ -105,15 +106,15 @@ while True:
         if cv2.waitKey(20) & 0xFF == ord('q'):
           break
           '''
-      for i in range (512):
-       Step1()
-       Step2()
-       Step3()
-       Step4()
-       Step5()
-       Step6()
-      GPIO.cleanup()
-    else: 
-      print("abdjkashbdkjashdjkas")
-      GPIO.cleanup()
+    for i in range (512):
+      Step1()
+      Step2()
+      Step3()
+      Step4()
+      Step5()
+      Step6()
+    GPIO.cleanup()
+  else: 
+    print("abdjkashbdkjashdjkas")
+    GPIO.cleanup()
 
