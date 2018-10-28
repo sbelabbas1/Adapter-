@@ -3,6 +3,10 @@
 Spyder Editor
 This is a temporary script file.
 """
+
+import numpy as np
+import cv2
+
 #include <stdio.h>
 from time import sleep
 import RPi.GPIO as GPIO
@@ -26,7 +30,7 @@ GPIO.output(A, False)
 GPIO.output(B, False)
 GPIO.output(C, False)
 GPIO.output(D, False)
-Button_State = GPIO.input(E)
+
 # driving the motor
 def Step1():
  GPIO.output(A, True)
@@ -70,16 +74,46 @@ def Step6():
  GPIO.output(A, False)
  
  # start one complete turn
-if Button_State== True:
-  for i in range (512):
-   Step1()
-   Step2()
-   Step3()
-   Step4()
-   Step5()
-   Step6()
-  GPIO.cleanup()
-else: 
-  print("abdjkashbdkjashdjkas")
-  GPIO.cleanup()
+cap = cv2.VideoCapture(0)
+
+while(True):
+    # Capture frame-by-frame
+    ret, frame = cap.read()
+
+    # Display the resulting frame
+    cv2.imshow('frame',frame)
+    if cv2.waitKey(20) & 0xFF == ord('q'):
+        break
+
+# When everything done, release the capture
+cap.release()
+cv2.destroyAllWindows()
+
+
+
+cap = cv2.VideoCapture(0)
+while True:
+    Button_State = GPIO.input(E)
+    if Button_State == True:
+     '''
+        while(True):
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+    
+        # Display the resulting frame
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(20) & 0xFF == ord('q'):
+          break
+          '''
+      for i in range (512):
+       Step1()
+       Step2()
+       Step3()
+       Step4()
+       Step5()
+       Step6()
+      GPIO.cleanup()
+    else: 
+      print("abdjkashbdkjashdjkas")
+      GPIO.cleanup()
 
