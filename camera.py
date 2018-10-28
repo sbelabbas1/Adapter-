@@ -7,11 +7,11 @@ camera = cv2.VideoCapture(camera_port)
 time.sleep(0.1)  # If you don't wait, the image will be dark
 #Save Image
 return_value, image = camera.read()
-cv2.imwrite("opencv.png", image)
+cv2.imwrite("opencv.jpg", image)
 
 # Get user supplied values
 imagePath = "C:\Users\steve\Documents\University\2018-2019\Hackathon\Adapter-\opencv.png" #//enter the image path
-cascPath = "face.xml"
+cascPath = "C:\Users\steve\Documents\University\2018-2019\Hackathon\Face-Detection-OpenCV\data"
 
 # Create the haar cascade
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -26,8 +26,8 @@ faces = faceCascade.detectMultiScale(
     gray,
     scaleFactor=1.1,
     minNeighbors=5,
-    minSize=(30, 30),
-    faceCascade = cv2.CASCADE_SCALE_IMAGE #.cv.CV_HAAR_SCALE_IMAGE
+    flags=cv2.CASCADE_SCALE_IMAGE, #.cv.CV_HAAR_SCALE_IMAGE
+    minSize=(30, 30)
 )
 
 # Checks number of humans detected and opens if Monster
